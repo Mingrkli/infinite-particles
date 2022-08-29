@@ -5,7 +5,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const particlesArray = []; // Holds each particle
-let hsl = 0;
 
 // Rearrange the canvas each time you resize your window 
 window.addEventListener('resize', () => {
@@ -24,7 +23,7 @@ class Particle {
         // the following allows the particle to move where ever direction since we set both directions. Remember Y is opposite so positive Y is down and negative is up
         this.speedX = Math.random() * 1 - .5; // -.5 to .5
         this.speedY = Math.random() * 1 - .5;
-        this.hsl = hsl;
+        this.hsl = Math.floor(Math.random() * 360 + 1); 
     }
     // method
     update() {
@@ -43,7 +42,6 @@ class Particle {
 function init() {
     for (let i = 0; i < 100; i++) {
         particlesArray.push(new Particle())
-        hsl++;
     }
 }
 init();
@@ -51,7 +49,6 @@ init();
 function check100Particle() {
     while (particlesArray.length < 101) {
         particlesArray.push(new Particle());
-        hsl++;
     }
 }
 
